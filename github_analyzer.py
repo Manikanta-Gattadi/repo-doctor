@@ -1,53 +1,59 @@
-import requests
+import os
+import shutil
+import subprocess
+import tempfile
 
 
 def get_repository_files(repo_url):
-    """
-    Get the list of files from a public GitHub repository.
-    """
+    temp_dir = tempfile.mkdtemp(prefix="repodoctor_")
 
-    # Example:
-    # https://github.com/Manikanta-Gattadi/repo-doctor
-    # becomes:
-    # Manikanta-Gattadi/repo-doctor
-
-    parts = repo_url.rstrip("/").split("/")
-
-    owner = parts[-2]
-    repo = parts[-1]
-
-    api_url = f"https://api.github.com/repos/{owner}/{repo}/git/trees/HEAD?recursive=1"
-
-    response = requests.get(api_url, timeout=10)
-
-    if response.status_code != 200:
-        raise Exception(
-            f"GitHub returned status code {response.status_code}"
+    try:
+        result = subprocess.run(
+            ["git", "clone", "--depth", "1", repo_url, temp_dir],
+            capture_output=True,
+            text=True,
+            timeout=60
         )
 
-    data = response.json()
+        if result.returncode != 0:
+            raise Exception(
+                f"Could not clone repository:\n{result.stderr}"
+            )
 
-    files = []
+        files = []
 
-    for item in data.get("tree", []):
+        ignored = {
+            ".git",
+            "node_modules",
+            "__pycache__",
+            ".venv",
+            "venv"
+        }
 
-        if item["type"] == "blob":
-            files.append(item["path"])
+        for root, dirs, filenames in os.walk(temp_dir):
 
-    return files
+            dirs[:] = [
+                d for d in dirs
+                if d not in ignored
+            ]
 
+            for filename in filenames:
 
-if __name__ == "__main__":
+                full_path = os.path.join(root, filename)
 
-    repository = "https://github.com/Manikanta-Gattadi/repo-doctor"
+                relative_path = os.path.relpath(
+                    full_path,
+                    temp_dir
+                )
 
-    print("Analyzing repository...")
-    print()
+                files.append(
+                    relative_path.replace("\\", "/")
+                )
 
-    files = get_repository_files(repository)
+        return files
 
-    print(f"Found {len(files)} files.")
-    print()
-
-    for file in files:
-        print(file)
+    finally:
+        shutil.rmtree(
+            temp_dir,
+            ignore_errors=True
+        )

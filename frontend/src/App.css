@@ -1,0 +1,939 @@
+/* =========================================
+   REPODOCTOR
+   ========================================= */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+
+  font-family:
+    Inter,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+
+  background:
+    radial-gradient(
+      circle at top right,
+      rgba(45, 100, 180, 0.16),
+      transparent 35%
+    ),
+    #070b14;
+
+  color: #ffffff;
+}
+
+.app {
+  min-height: 100vh;
+}
+
+
+/* =========================================
+   NAVBAR
+   ========================================= */
+
+.navbar {
+  height: 72px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  padding: 0 55px;
+
+  border-bottom:
+    1px solid rgba(255, 255, 255, 0.08);
+
+  background:
+    rgba(7, 11, 20, 0.85);
+
+  backdrop-filter: blur(12px);
+
+  position: sticky;
+
+  top: 0;
+
+  z-index: 10;
+}
+
+.logo {
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  font-size: 22px;
+
+  font-weight: 700;
+}
+
+.logo-icon {
+  font-size: 27px;
+}
+
+.nav-badge {
+  padding: 8px 15px;
+
+  border-radius: 20px;
+
+  font-size: 13px;
+
+  color: #aebbd0;
+
+  background:
+    rgba(255, 255, 255, 0.05);
+
+  border:
+    1px solid rgba(255, 255, 255, 0.08);
+}
+
+
+/* =========================================
+   MAIN
+   ========================================= */
+
+main {
+  width: min(1100px, 92%);
+
+  margin: auto;
+}
+
+
+/* =========================================
+   HERO
+   ========================================= */
+
+.hero {
+  padding: 75px 0 45px;
+
+  text-align: center;
+}
+
+.hero-badge {
+  display: inline-block;
+
+  padding: 8px 15px;
+
+  border-radius: 20px;
+
+  background:
+    rgba(75, 145, 255, 0.09);
+
+  border:
+    1px solid rgba(75, 145, 255, 0.2);
+
+  color: #75aaff;
+
+  font-size: 13px;
+
+  margin-bottom: 22px;
+}
+
+.hero h1 {
+  font-size: clamp(42px, 6vw, 68px);
+
+  line-height: 1.05;
+
+  margin: 0;
+
+  letter-spacing: -2px;
+}
+
+.hero h1 span {
+  color: #66a3ff;
+}
+
+.hero-description {
+  max-width: 700px;
+
+  margin: 25px auto 35px;
+
+  color: #9aa8bd;
+
+  font-size: 17px;
+
+  line-height: 1.7;
+}
+
+
+/* =========================================
+   INPUT
+   ========================================= */
+
+.input-card {
+  max-width: 900px;
+
+  margin: auto;
+
+  padding: 24px;
+
+  border-radius: 18px;
+
+  background:
+    rgba(255, 255, 255, 0.035);
+
+  border:
+    1px solid rgba(255, 255, 255, 0.1);
+
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.25);
+}
+
+.input-card label {
+  display: block;
+
+  text-align: left;
+
+  font-size: 13px;
+
+  color: #8d9bb0;
+
+  margin-bottom: 10px;
+}
+
+.input-row {
+  display: flex;
+
+  gap: 12px;
+}
+
+.input-row input {
+  flex: 1;
+
+  min-width: 0;
+
+  height: 52px;
+
+  padding: 0 17px;
+
+  border-radius: 10px;
+
+  border:
+    1px solid rgba(255, 255, 255, 0.1);
+
+  background: #0b111d;
+
+  color: white;
+
+  font-size: 15px;
+
+  outline: none;
+}
+
+.input-row input:focus {
+  border-color: #4e91ff;
+
+  box-shadow:
+    0 0 0 3px rgba(78, 145, 255, 0.1);
+}
+
+.input-row input::placeholder {
+  color: #59677b;
+}
+
+.input-row button {
+  height: 52px;
+
+  padding: 0 24px;
+
+  border: none;
+
+  border-radius: 10px;
+
+  background: #4d8fff;
+
+  color: white;
+
+  font-size: 15px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: 0.2s;
+}
+
+.input-row button:hover {
+  background: #6aa4ff;
+
+  transform: translateY(-1px);
+}
+
+.input-row button:disabled {
+  opacity: 0.6;
+
+  cursor: not-allowed;
+
+  transform: none;
+}
+
+.error-message {
+  margin-top: 12px;
+
+  padding: 12px;
+
+  border-radius: 8px;
+
+  background:
+    rgba(255, 80, 80, 0.08);
+
+  color: #ff8585;
+
+  text-align: left;
+
+  font-size: 14px;
+}
+
+
+/* =========================================
+   FEATURE CARDS
+   ========================================= */
+
+.features {
+  display: grid;
+
+  grid-template-columns:
+    repeat(4, 1fr);
+
+  gap: 15px;
+
+  margin: 20px 0 70px;
+}
+
+.feature-card {
+  padding: 22px;
+
+  border-radius: 15px;
+
+  background:
+    rgba(255, 255, 255, 0.025);
+
+  border:
+    1px solid rgba(255, 255, 255, 0.07);
+
+  transition: 0.2s;
+}
+
+.feature-card:hover {
+  transform: translateY(-3px);
+
+  border-color:
+    rgba(100, 160, 255, 0.25);
+}
+
+.feature-icon {
+  font-size: 25px;
+
+  margin-bottom: 14px;
+}
+
+.feature-card h3 {
+  margin: 0 0 8px;
+
+  font-size: 16px;
+}
+
+.feature-card p {
+  margin: 0;
+
+  color: #7f8da2;
+
+  font-size: 13px;
+
+  line-height: 1.6;
+}
+
+
+/* =========================================
+   RESULT SECTION
+   ========================================= */
+
+.result-section {
+  margin-bottom: 80px;
+}
+
+.result-header {
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: flex-end;
+
+  margin-bottom: 25px;
+}
+
+.result-label {
+  display: block;
+
+  color: #6fa4ff;
+
+  font-size: 11px;
+
+  font-weight: 700;
+
+  letter-spacing: 1.8px;
+
+  margin-bottom: 7px;
+}
+
+.result-header h2 {
+  margin: 0;
+
+  font-size: 30px;
+}
+
+.ai-status {
+  color: #5dffa4;
+
+  font-size: 13px;
+
+  padding-bottom: 5px;
+}
+
+
+/* =========================================
+   LOADING
+   ========================================= */
+
+.loading-card {
+  padding: 60px 30px;
+
+  text-align: center;
+
+  border-radius: 18px;
+
+  background:
+    rgba(255, 255, 255, 0.025);
+
+  border:
+    1px solid rgba(255, 255, 255, 0.08);
+}
+
+.loading-spinner {
+  width: 42px;
+
+  height: 42px;
+
+  margin: 0 auto 20px;
+
+  border:
+    3px solid rgba(255, 255, 255, 0.1);
+
+  border-top-color: #5c9bff;
+
+  border-radius: 50%;
+
+  animation:
+    spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loading-card h3 {
+  margin-bottom: 8px;
+}
+
+.loading-card p {
+  color: #7f8da2;
+
+  margin: 0;
+}
+
+
+/* =========================================
+   RESULTS
+   ========================================= */
+
+.results-container {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 22px;
+}
+
+
+/* =========================================
+   REPOSITORY INFO
+   ========================================= */
+
+.repository-info {
+  display: grid;
+
+  grid-template-columns:
+    1fr 180px;
+
+  gap: 15px;
+
+  padding: 20px;
+
+  border-radius: 15px;
+
+  background:
+    rgba(255, 255, 255, 0.025);
+
+  border:
+    1px solid rgba(255, 255, 255, 0.07);
+}
+
+.info-label {
+  font-size: 10px;
+
+  letter-spacing: 1.5px;
+
+  color: #68778d;
+
+  font-weight: 700;
+}
+
+.repository-info p {
+  margin: 7px 0 0;
+
+  color: #d4dce8;
+
+  font-size: 14px;
+
+  word-break: break-all;
+}
+
+
+/* =========================================
+   AI REPORT
+   ========================================= */
+
+.report-card {
+  padding: 32px;
+
+  border-radius: 18px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(55, 110, 190, 0.09),
+      rgba(255, 255, 255, 0.025)
+    );
+
+  border:
+    1px solid rgba(90, 150, 255, 0.18);
+}
+
+.report-title {
+  display: flex;
+
+  align-items: center;
+
+  gap: 15px;
+
+  padding-bottom: 22px;
+
+  margin-bottom: 24px;
+
+  border-bottom:
+    1px solid rgba(255, 255, 255, 0.07);
+}
+
+.report-icon {
+  width: 48px;
+
+  height: 48px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  border-radius: 12px;
+
+  background:
+    rgba(70, 135, 255, 0.12);
+
+  font-size: 24px;
+}
+
+
+/* =========================================
+   AI REPORT TEXT
+   ========================================= */
+
+.ai-report {
+  color: #c3cddd;
+
+  font-size: 16px;
+
+  line-height: 1.8;
+
+  overflow-wrap: anywhere;
+}
+
+
+/* Numbered headings */
+
+.report-heading {
+  margin-top: 28px;
+
+  margin-bottom: 14px;
+
+  padding-bottom: 10px;
+
+  color: #ffffff;
+
+  font-size: 20px;
+
+  font-weight: 700;
+
+  line-height: 1.4;
+
+  border-bottom:
+    1px solid rgba(255, 255, 255, 0.08);
+}
+
+.report-heading:first-child {
+  margin-top: 0;
+}
+
+
+/* Normal lines */
+
+.report-line {
+  margin-bottom: 10px;
+
+  color: #bfc9d8;
+}
+
+
+/* Bullet points */
+
+.report-bullet {
+  display: flex;
+
+  gap: 10px;
+
+  margin-bottom: 9px;
+
+  padding-left: 8px;
+
+  color: #aebbd0;
+
+  line-height: 1.7;
+}
+
+.bullet-dot {
+  color: #69a2ff;
+
+  font-size: 20px;
+
+  line-height: 1.2;
+}
+
+
+/* Space between sections */
+
+.report-space {
+  height: 8px;
+}
+
+
+/* =========================================
+   RESULT CARD
+   ========================================= */
+
+.result-card {
+  width: 100%;
+
+  padding: 30px;
+
+  border-radius: 17px;
+
+  background:
+    rgba(255, 255, 255, 0.025);
+
+  border:
+    1px solid rgba(255, 255, 255, 0.07);
+}
+
+.card-heading {
+  display: flex;
+
+  align-items: center;
+
+  gap: 14px;
+
+  margin-bottom: 18px;
+}
+
+.card-icon {
+  font-size: 26px;
+}
+
+.card-heading h3 {
+  margin: 0;
+
+  font-size: 22px;
+}
+
+.result-card > p {
+  color: #9ca9bc;
+
+  line-height: 1.7;
+
+  margin: 0 0 20px;
+}
+
+
+/* =========================================
+   FILE LIST
+   ========================================= */
+
+.file-list {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 8px;
+}
+
+.file-item {
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  padding: 12px 14px;
+
+  border-radius: 8px;
+
+  background:
+    rgba(255, 255, 255, 0.035);
+
+  color: #aebbd0;
+
+  font-family:
+    Consolas,
+    monospace;
+
+  font-size: 13px;
+
+  overflow-wrap: anywhere;
+}
+
+.file-item:hover {
+  background:
+    rgba(255, 255, 255, 0.06);
+}
+
+
+/* =========================================
+   START SECTION
+   ========================================= */
+
+.start-section {
+  display: flex;
+
+  align-items: flex-start;
+
+  gap: 20px;
+
+  padding: 30px;
+
+  border-radius: 18px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(80, 150, 255, 0.1),
+      rgba(80, 150, 255, 0.025)
+    );
+
+  border:
+    1px solid rgba(90, 150, 255, 0.2);
+}
+
+.start-icon {
+  width: 50px;
+
+  height: 50px;
+
+  flex-shrink: 0;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  border-radius: 12px;
+
+  background:
+    rgba(80, 150, 255, 0.12);
+
+  font-size: 24px;
+}
+
+.start-section h2 {
+  margin: 0 0 10px;
+
+  font-size: 24px;
+}
+
+.start-section p {
+  margin: 0;
+
+  color: #99a7bb;
+
+  line-height: 1.7;
+}
+
+
+/* =========================================
+   EMPTY STATE
+   ========================================= */
+
+.empty-state {
+  padding: 75px 30px;
+
+  text-align: center;
+
+  border-radius: 18px;
+
+  background:
+    rgba(255, 255, 255, 0.02);
+
+  border:
+    1px dashed rgba(255, 255, 255, 0.1);
+}
+
+.empty-icon {
+  font-size: 45px;
+
+  margin-bottom: 15px;
+}
+
+.empty-state h3 {
+  margin: 0 0 10px;
+
+  font-size: 21px;
+}
+
+.empty-state p {
+  margin: 0;
+
+  color: #758399;
+
+  line-height: 1.6;
+}
+
+
+/* =========================================
+   FOOTER
+   ========================================= */
+
+footer {
+  display: flex;
+
+  justify-content: space-between;
+
+  width: min(1100px, 92%);
+
+  margin: auto;
+
+  padding: 25px 0 35px;
+
+  color: #59677b;
+
+  font-size: 12px;
+
+  border-top:
+    1px solid rgba(255, 255, 255, 0.06);
+}
+
+
+/* =========================================
+   RESPONSIVE
+   ========================================= */
+
+@media (max-width: 850px) {
+
+  .navbar {
+    padding: 0 25px;
+  }
+
+  .nav-badge {
+    display: none;
+  }
+
+  .features {
+    grid-template-columns:
+      repeat(2, 1fr);
+  }
+
+  .input-row {
+    flex-direction: column;
+  }
+
+  .input-row button {
+    width: 100%;
+  }
+
+  .repository-info {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+@media (max-width: 550px) {
+
+  main {
+    width: 94%;
+  }
+
+  .hero {
+    padding-top: 50px;
+  }
+
+  .hero h1 {
+    font-size: 40px;
+
+    letter-spacing: -1px;
+  }
+
+  .features {
+    grid-template-columns: 1fr;
+  }
+
+  .result-header {
+    align-items: flex-start;
+
+    flex-direction: column;
+
+    gap: 10px;
+  }
+
+  .report-card,
+  .result-card,
+  .start-section {
+    padding: 22px;
+  }
+
+  .start-section {
+    flex-direction: column;
+  }
+
+  footer {
+    flex-direction: column;
+
+    gap: 8px;
+  }
+}
